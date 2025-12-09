@@ -3,13 +3,26 @@ var deckId
 function handleClick(){
     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
         .then(res => res.json())
-        .then(data => deckId = data.deck_id)
+        .then(data => {
+            console.log(data)
+            deckId = data.deck_id
+        })
 }
 
 function drawCards() {
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    
+    if (deckId) {fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            document.getElementById('cards').innerHTML = `
+                <img src='${data.cards[0].image}' />
+                <img src='${data.cards[1].image}' />
+            `
+        })
+}   else {
+        console.log("You need to draw a deck first")
+    }
 }
 
 document.getElementById('new-deck').addEventListener('click', handleClick)

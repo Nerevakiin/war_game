@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('https://w0.peakpx.com/wallpaper/338/812/HD-wallpaper-gambling-table-casino-dice-chips-bokeh-playing-cards-casino-concepts.jpg') no-repeat fixed;
+    background-size: cover;
+}
+
+#new-deck {
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: yellow;
+    border: none;
+    border-radius: 20px;;
+}
+
+#draw-cards {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-color: yellow;
+    border: none;
+}
