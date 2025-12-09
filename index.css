@@ -3,6 +3,10 @@ body {
     padding: 0;
     background: url('https://w0.peakpx.com/wallpaper/338/812/HD-wallpaper-gambling-table-casino-dice-chips-bokeh-playing-cards-casino-concepts.jpg') no-repeat fixed;
     background-size: cover;
+    font-family: "Exo 2";
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #new-deck {
@@ -13,6 +17,7 @@ body {
     background-color: yellow;
     border: none;
     border-radius: 20px;;
+    cursor: pointer;
 }
 
 #draw-cards {
@@ -23,4 +28,5 @@ body {
     height: 30px;
     background-color: yellow;
     border: none;
+    cursor: pointer;
 }
