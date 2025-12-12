@@ -26,7 +26,7 @@ function drawCards() {
             winnerCard(data.cards[0].value, data.cards[1].value)
         })
 }   else {
-        console.log("You need to draw a deck first")
+        console.log("You need to draw a deck first!")
     }
 }
 
@@ -51,4 +51,4 @@ function winnerCard(card1, card2){
 
 document.getElementById('new-deck').addEventListener('click', newDeckClick)
 
-document.getElementById('draw-cards').addEventListener('click', drawCards)
+document.getElementById('draw-cards').addEventListener('click', drawCards) 
