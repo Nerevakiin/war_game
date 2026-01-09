@@ -1,5 +1,6 @@
 var deckId
 const cardsContainer = document.getElementById('cards')
+const placeHolderText = document.getElementById('winner-placeholder')
 
 function newDeckClick(){
     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
@@ -8,7 +9,7 @@ function newDeckClick(){
             console.log(data)
             deckId = data.deck_id
         })
-    document.getElementById('winner-placeholder').innerText = "New deck locked and loaded"
+    placeHolderText.innerText = "New deck locked and loaded"
 }
 
 function drawCards() {
@@ -24,10 +25,14 @@ function drawCards() {
                 <img src='${data.cards[1].image}' class='card' />
             `
 
+            console.log(data.remaining)
+            document.getElementById("remaining-cards").innerHTML = `Remaining cards: ${data.remaining}`
+
             winnerCard(data.cards[0].value, data.cards[1].value)
         })
 }   else {
         console.log("You need to draw a deck first!")
+        placeHolderText.textContent = "You need to draw a deck first silly"
     }
 }
 
@@ -43,13 +48,13 @@ function winnerCard(card1, card2){
     
     if (valueArray.indexOf(card1) > valueArray.indexOf(card2)){
         console.log("The winner is card1 with value: " + card1)
-        document.getElementById('winner-placeholder').innerHTML = `The winner is Computer with value: ${card1}`
+        placeHolderText.innerHTML = `The winner is Computer with value: ${card1}`
     } else if ((valueArray.indexOf(card1) < valueArray.indexOf(card2))) {
         console.log("The winner is card2 with value: " + card2)
-        document.getElementById('winner-placeholder').innerHTML = `The winner is You with value: ${card2}`
+        placeHolderText.innerHTML = `The winner is You with value: ${card2}`
     } else {
         console.log("Tie")
-        document.getElementById('winner-placeholder').innerHTML = `Tie!`
+        placeHolderText.innerHTML = `Tie!`
     }
 }
 
