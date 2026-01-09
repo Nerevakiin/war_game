@@ -8,6 +8,7 @@ function newDeckClick(){
             console.log(data)
             deckId = data.deck_id
         })
+    document.getElementById('winner-placeholder').innerText = "New deck locked and loaded"
 }
 
 function drawCards() {
@@ -42,10 +43,13 @@ function winnerCard(card1, card2){
     
     if (valueArray.indexOf(card1) > valueArray.indexOf(card2)){
         console.log("The winner is card1 with value: " + card1)
+        document.getElementById('winner-placeholder').innerHTML = `The winner is Computer with value: ${card1}`
     } else if ((valueArray.indexOf(card1) < valueArray.indexOf(card2))) {
         console.log("The winner is card2 with value: " + card2)
+        document.getElementById('winner-placeholder').innerHTML = `The winner is You with value: ${card2}`
     } else {
         console.log("Tie")
+        document.getElementById('winner-placeholder').innerHTML = `Tie!`
     }
 }
 
