@@ -1,5 +1,5 @@
-var computerScore = 0
-var myScore = 0
+let computerScore = 0
+let myScore = 0
 var deckId
 const cardsContainer = document.getElementById('cards')
 const placeHolderText = document.getElementById('winner-placeholder')
@@ -7,6 +7,7 @@ const drawCardsBtn = document.getElementById('draw-cards')
 const newDeckBtn = document.getElementById('new-deck')
 const computerScoreEl = document.getElementById('computer-score')
 const myScoreEl = document.getElementById('my-score')
+const remainingCardsEl = document.getElementById("remaining-cards")
 
 function newDeckClick(){
     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
@@ -14,6 +15,11 @@ function newDeckClick(){
         .then(data => {
             console.log(data)
             deckId = data.deck_id
+            
+            remainingCardsEl.innerHTML = `Remaining cards: ${data.remaining}`
+            drawCardsBtn.classList.remove("disabled")
+            drawCardsBtn.disabled = false
+            
         })
     placeHolderText.innerText = "New deck locked and loaded"
 }
@@ -32,8 +38,7 @@ function drawCards() {
                 <img src='${data.cards[1].image}' class='card' />
             `
 
-            console.log(data.remaining)
-            document.getElementById("remaining-cards").innerHTML = `Remaining cards: ${data.remaining}`
+            remainingCardsEl.innerHTML = `Remaining cards: ${data.remaining}`
 
 
 
