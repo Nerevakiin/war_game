@@ -1,6 +1,12 @@
+let computerScore = 0
+let myScore = 0
 var deckId
 const cardsContainer = document.getElementById('cards')
 const placeHolderText = document.getElementById('winner-placeholder')
+const drawCardsBtn = document.getElementById('draw-cards')
+const newDeckBtn = document.getElementById('new-deck')
+const computerScoreEl = document.getElementById('computer-score')
+const myScoreEl = document.getElementById('my-score')
 
 function newDeckClick(){
     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
@@ -28,6 +34,13 @@ function drawCards() {
             console.log(data.remaining)
             document.getElementById("remaining-cards").innerHTML = `Remaining cards: ${data.remaining}`
 
+
+            if (data.remaining === 0){
+                drawCardsBtn.disabled = true 
+                drawCardsBtn.classList.add("disabled")
+            }
+
+
             winnerCard(data.cards[0].value, data.cards[1].value)
         })
 }   else {
@@ -38,7 +51,6 @@ function drawCards() {
 
 
 
-// Super proud I managed to think and write this all by myself hehe
 function winnerCard(card1, card2){
         console.log(deckId)
     console.log({card1}, {card2})
@@ -47,17 +59,22 @@ function winnerCard(card1, card2){
     
     
     if (valueArray.indexOf(card1) > valueArray.indexOf(card2)){
-        console.log("The winner is card1 with value: " + card1)
+        console.log("The winner is Computer with value: " + card1)
         placeHolderText.innerHTML = `The winner is Computer with value: ${card1}`
+        computerScore++
+        computerScoreEl.textContent = `Computer score: ${computerScore}`
+
     } else if ((valueArray.indexOf(card1) < valueArray.indexOf(card2))) {
-        console.log("The winner is card2 with value: " + card2)
-        placeHolderText.innerHTML = `The winner is You with value: ${card2}`
+        console.log("The winner is Me with value: " + card2)
+        placeHolderText.innerHTML = `The winner is Me with value: ${card2}`
+        myScore++
+        myScoreEl.textContent = `My Score: ${myScore}`
+
     } else {
         console.log("Tie")
         placeHolderText.innerHTML = `Tie!`
     }
 }
 
-document.getElementById('new-deck').addEventListener('click', newDeckClick)
-
-document.getElementById('draw-cards').addEventListener('click', drawCards) 
+newDeckBtn.addEventListener('click', newDeckClick)
+drawCardsBtn.addEventListener('click', drawCards) 

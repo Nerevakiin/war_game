@@ -15,7 +15,7 @@ body {
 #new-deck {
     width: 250px;
     height: 40px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 10px;
     background-color: yellow;
     border: none;
@@ -23,6 +23,7 @@ body {
     cursor: pointer;
     font-size: 1.2em;
 }
+
 
 #draw-cards {
     width: 100%;
@@ -33,19 +34,29 @@ body {
     font-size: 1.5em;
 }
 
+#draw-cards.disabled {
+    color: white;
+    background-color: gray;
+    cursor: not-allowed;
+}
+
 .card-slot {
     border: 1px solid black;
     border-radius: 5px;
-    height: 300px;
-    width: calc(300px * 5 / 7)
+    height: 250px;
+    width: calc(250px * 5 / 7)
 }
 
 
 .card-slot:nth-of-type(1) {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
 
 .card {
     width: 100%;
     height: 100%;
+}
+
+h2 {
+    margin: 10px;
 }
