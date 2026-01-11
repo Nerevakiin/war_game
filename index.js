@@ -20,6 +20,12 @@ function newDeckClick(){
             drawCardsBtn.classList.remove("disabled")
             drawCardsBtn.disabled = false
             
+            computerScore = 0
+            myScore = 0
+            computerScoreEl.textContent = `Computer Score: ${computerScore}`
+            myScoreEl.textContent = `My Score: ${myScore}`
+
+            
         })
     placeHolderText.innerText = "New deck locked and loaded"
 }
