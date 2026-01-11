@@ -1,5 +1,5 @@
-let computerScore = 0
-let myScore = 0
+var computerScore = 0
+var myScore = 0
 var deckId
 const cardsContainer = document.getElementById('cards')
 const placeHolderText = document.getElementById('winner-placeholder')
@@ -20,7 +20,8 @@ function newDeckClick(){
 
 function drawCards() {
     
-    if (deckId) {fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    if (deckId) {
+        fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -35,13 +36,26 @@ function drawCards() {
             document.getElementById("remaining-cards").innerHTML = `Remaining cards: ${data.remaining}`
 
 
-            if (data.remaining === 0){
-                drawCardsBtn.disabled = true 
-                drawCardsBtn.classList.add("disabled")
-            }
-
 
             winnerCard(data.cards[0].value, data.cards[1].value)
+
+            
+            if (data.remaining === 0){
+
+                if (computerScore > myScore) {
+                    placeHolderText.textContent = "Final Winner: Computer"
+                    console.log("Final Winner: Computer")
+                } else if (myScore > computerScore) {
+                    placeHolderText.textContent = "Final Winner: Me"
+                    console.log("Final Winner: me")
+                } else {
+                    placeHolderText.textContent = "Tie!"
+                }
+
+                drawCardsBtn.disabled = true 
+                drawCardsBtn.classList.add("disabled")
+
+            }
         })
 }   else {
         console.log("You need to draw a deck first!")
